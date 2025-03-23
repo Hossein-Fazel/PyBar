@@ -1,6 +1,6 @@
-# Progress Bar in Python
+# PyBar: A Simple Python Progress Bar
 
-This is a simple Python program that implements a customizable cli progress bar. The progress bar can be used to visually represent the progress of a task, such as file downloads, data processing, or any other operation that can be broken down into incremental steps.
+**PyBar** is a lightweight and customizable progress bar implementation in Python. It is designed to be simple, flexible, and easy to integrate into your projects. Whether you're tracking the progress of a file download, data processing, or any other task, PyBar provides a clean and intuitive way to visualize progress.
 
 ## Features
 
@@ -8,6 +8,8 @@ This is a simple Python program that implements a customizable cli progress bar.
 - **Adjustable Size**: The length of the progress bar can be adjusted to fit your needs.
 - **Dynamic Updates**: The progress bar updates dynamically as the task progresses.
 - **Start and Stop Control**: You can start, update, and stop the progress bar as needed.
+- **Unicode Support**: Use Unicode characters (e.g., █, ░, ⬛) for the filled and empty portions of the bar.
+- **Percentage Display**: Show the progress percentage with one decimal place.
 
 ### Class Initialization
 
