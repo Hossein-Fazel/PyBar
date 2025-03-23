@@ -44,35 +44,103 @@ class progressbar:
 
 if __name__ == "__main__":
     from time import sleep
-    tpb = progressbar()
+
+    # Create a progress bar with "=" as the filled character and "." as the empty character
+    tpb = progressbar(filled="=", empty_char=".", total=100, size=50)
+
+    # Simulate a task that takes 100 steps
     for i in range(100):
         tpb.update(1)
         tpb.show()
+        sleep(0.05)  # Simulate a shorter delay
 
-        sleep(0.1)
     tpb.stop()
 
-    tpb = progressbar("-", total=100, size=63)
+
+
+    # Create a smaller progress bar with a size of 20
+    tpb = progressbar(filled="#", empty_char=" ", total=100, size=20)
+
+    # Simulate a task that takes 100 steps
     for i in range(100):
         tpb.update(1)
         tpb.show()
-
         sleep(0.1)
+
     tpb.stop()
 
-    tpb = progressbar("-", total=10)
+
+
+    tpb = progressbar(filled="#", empty_char=" ", total=100, size=50, start=30)
+
+    # Simulate a task that takes 70 steps (to reach 100)
+    for i in range(70):
+        tpb.update(1)
+        tpb.show()
+        sleep(0.1)
+
+    tpb.stop()
+
+
+
+    # Create a progress bar for a task with only 10 steps
+    tpb = progressbar(filled="#", empty_char=" ", total=10, size=20)
+
+    # Simulate a task that takes 10 steps
     for i in range(10):
         tpb.update(1)
         tpb.show()
+        sleep(0.5)  # Simulate a longer delay
 
-        sleep(0.1)
     tpb.stop()
 
-    tpb = progressbar(filled="=", empty_char="-", total=50)
-    for i in range(50):
+
+
+    # Create a progress bar with a block character (█) as the filled character
+    tpb = progressbar(filled="█", empty_char="░", total=100, size=40)
+
+    # Simulate a task that takes 100 steps
+    for i in range(100):
         tpb.update(1)
         tpb.show()
+        sleep(0.05)
 
-        sleep(0.1)
     tpb.stop()
-        
+
+
+    # Simulate downloading a 10 MB file in 1 MB chunks
+    file_size_mb = 10
+    chunk_size_mb = 1
+
+    # Create a progress bar with a total of 10 steps (1 step per MB)
+    tpb = progressbar(filled="#", empty_char=" ", total=file_size_mb, size=30)
+
+    print("Downloading file...")
+    for i in range(file_size_mb):
+        tpb.update(chunk_size_mb)
+        tpb.show()
+        sleep(1)  # Simulate download time
+
+    tpb.stop()
+    print("Download complete!")
+
+
+
+    # Simulate downloading 3 files
+    num_files = 3
+    file_size_mb = 10
+    chunk_size_mb = 1
+
+    for file_num in range(1, num_files + 1):
+        print(f"Downloading file {file_num}...")
+        tpb = progressbar(filled="#", empty_char=" ", total=file_size_mb, size=30)
+
+        for i in range(file_size_mb):
+            tpb.update(chunk_size_mb)
+            tpb.show()
+            sleep(0.5)  # Simulate download time
+
+        tpb.stop()
+        print(f"File {file_num} downloaded!\n")
+
+    print("All files downloaded!")
