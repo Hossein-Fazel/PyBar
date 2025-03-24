@@ -1,5 +1,30 @@
 class progressbar:
-    def __init__(self, filled:str = "#", empty_char:str = " ", total:int = 100, size:int = 50, start:int = 0):
+    def __init__(self, filled:str = "#", empty_char:str = " ", total:int = 100, size:int = 50, start:int = 0, display_mode:str= "full"):
+        """
+        Initialize a customizable progress bar instance.
+        
+        Parameters:
+            filled (str): Character used to represent completed progress (default: "#")
+            empty_char (str): Character used to represent remaining progress (default: " ")
+            total (int): Total number of steps for completion (default: 100)
+            size (int): Width of the progress bar in characters (default: 50)
+            start (int): Starting progress value (default: 0)
+            display_mode (str): Display format option (default: "full")
+                Available modes:
+                - "full": Shows both progress bar and percentage (e.g., "[####    ] 50%")
+                - "bar": Shows only the progress bar (e.g., "[####    ]")
+                - "percent": Shows only the percentage (e.g., "50%")
+        
+        Raises:
+            ValueError: If any of the following occur:
+                - start value exceeds total
+                - filled or empty_char are longer than 1 character
+                - invalid display_mode is specified
+                - type mismatches in parameters
+        """
+        
+        
+        
         try:
             if start > total or len(filled) > 1 or len(empty_char) > 1:
                 raise ValueError
@@ -12,15 +37,25 @@ class progressbar:
             self._progress_bar = ""
             self._scale = round(100 / self._size, 3)
             self._isStop = False
-            self.reset()
+
+            if display_mode.lower() == "full":
+                self._pb, self._pc = 1, 1
+            elif display_mode.lower() == "bar":
+                self._pb, self._pc = 1, 0
+            elif display_mode.lower() == "percent":
+                self._pb, self._pc = 0, 1
+            else:
+                raise ValueError
+
         except:
             raise ValueError("Type mismatch in initial values")
+        self.reset()
         
     def reset(self):
         self._isStop = False
         percent = round(self._start/self._total * 100, 1)
         progress = int(percent // self._scale)
-        self._progress_bar = f"\r[{self._filled * progress}{self._emptyChar * (self._size - progress)}] {percent}%"
+        self._progress_bar = f"\r{f"[{self._filled * progress}{self._emptyChar * (self._size - progress)}]" * (self._pb)}{f" {percent}%" * self._pc}"
 
     def update(self, value:int):
         if not self._isStop:
@@ -28,7 +63,7 @@ class progressbar:
                 self._spent += int(value)
                 percent = round(self._spent/self._total * 100, 1)
                 progress = int(percent // self._scale)
-                self._progress_bar = f"\r[{self._filled * progress}{self._emptyChar * (self._size - progress)}] {percent}%"
+                self._progress_bar = f"\r{f"[{self._filled * progress}{self._emptyChar * (self._size - progress)}]" * (self._pb)}{f"{percent}%" * self._pc}"
             except:
                 raise ValueError(f"Type mismatch for Value parameter, int expected but {type(value)} given")
         else:

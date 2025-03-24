@@ -2,14 +2,15 @@
 
 **PyBar** is a lightweight and customizable progress bar implementation in Python. It is designed to be simple, flexible, and easy to integrate into your projects. Whether you're tracking the progress of a file download, data processing, or any other task, PyBar provides a clean and intuitive way to visualize progress.
 
+
 ## Features
 
 - **Customizable Characters**: You can specify the characters used to represent filled and empty portions of the progress bar.
 - **Adjustable Size**: The length of the progress bar can be adjusted to fit your needs.
 - **Dynamic Updates**: The progress bar updates dynamically as the task progresses.
-- **Start and Stop Control**: You can start, update, and stop the progress bar as needed.
+- **Progress Control**: You can start, update, and stop the progress bar as needed.
 - **Unicode Support**: Use Unicode characters (e.g., █, ░, ⬛) for the filled and empty portions of the bar.
-- **Percentage Display**: Show the progress percentage with one decimal place.
+- **Multiple Display Formats**: Choose between full bar, percentage-only, or combined view
 
 ### Class Initialization
 
@@ -20,6 +21,8 @@ The `progressbar` class can be initialized with the following parameters:
 - `total` (int): The total number of steps required to complete the task. Default is `100`.
 - `size` (int): The length of the progress bar in characters. Default is `50`.
 - `start` (int): The starting point of the progress bar. Default is `0`.
+- `display_mode` (str): Sets display format of progress bar, "full" (bar + percentage), "bar" (bar only), or "percent" (percentage only). Default is `full`
+
 
 ### Methods
 
@@ -28,16 +31,224 @@ The `progressbar` class can be initialized with the following parameters:
 - `show()`: Displays the current state of the progress bar.
 - `stop()`: Stops the progress bar and prints a new line.
 
+---
+
 ## Usage
 
 ### Installation
 
-No installation is required. Simply copy the `progressbar` class into your Python script.
+PyBar is available as a GitHub repository, making it easy to integrate into your Python projects. Here's how to install and use it:
+
+### Method 1: Cloning the Repository
+
+1. Clone the PyBar repository to your local machine:
+   ```bash
+   git clone https://github.com/Hossein-Fazel/PyBar.git
+   ```
+
+2. Navigate to the cloned directory:
+   ```bash
+   cd PyBar
+   ```
+
+3. Copy the `progressbar.py` file to your project directory.
+
+4. Import the progress bar in your Python script:
+   ```python
+   from progressbar import progressbar
+   ```
+
+### Method 2: Direct Download
+
+1. Visit the GitHub repository at [https://github.com/Hossein-Fazel/PyBar](https://github.com/Hossein-Fazel/PyBar)
+
+2. Click on the "Code" button and select "Download ZIP"
+
+3. Extract the ZIP file and copy `progressbar.py` to your project directory
+
+4. Import it in your Python script:
+   ```python
+   from progressbar import progressbar
+   ```
+
+### Method 3: Using as a Submodule (for Git projects)
+
+If you're managing your project with Git:
+
+1. Add PyBar as a submodule:
+   ```bash
+   git submodule add https://github.com/Hossein-Fazel/PyBar.git
+   ```
+
+2. Import it in your Python script:
+   ```python
+   from PyBar.progressbar import progressbar
+   ```
+
+### Requirements
+PyBar has no external dependencies and works with:
+- Python 3.6+
+- Any operating system (Windows, Linux, macOS)
+
+Once installed, you can start using PyBar immediately in your projects. The simple import statement gives you access to all the progress bar functionality shown in the examples above.
+
+For the latest updates and bug fixes, you can periodically pull new changes from the repository:
+```bash
+git pull https://github.com/Hossein-Fazel/PyBar.git
+```
+
+### Basic Example
+
+Here’s a simple example to get you started:
+
+```python
+from time import sleep
+
+# Create a progress bar with default settings
+tpb = progressbar()
+
+# Simulate a task that takes 100 steps
+for i in range(100):
+    tpb.update(1)  # Update the progress bar by 1 unit
+    tpb.show()     # Display the updated progress bar
+    sleep(0.1)     # Simulate a delay
+
+tpb.stop()  # Stop the progress bar and print a new line
+```
+
+**Output:**
+```plaintext
+[#########################                         ] 50.0%
+[##################################################] 100.0%
+```
 
 
-### Example Usage
+### Customizing the Progress Bar
 
-Here is some examples of how to use the progressbar class:
+You can customize the progress bar by specifying the filled character, empty character, total steps, size, starting value and etc.
+
+```python
+# Create a custom progress bar
+tpb = progressbar(filled="=", empty_char=".", total=100, size=50)
+
+# Simulate a task that takes 100 steps
+for i in range(100):
+    tpb.update(1)
+    tpb.show()
+    sleep(0.05)  # Simulate a shorter delay
+
+tpb.stop()
+```
+
+**Output:**
+```plaintext
+[=========================.........................] 50.0%
+[==================================================] 100.0%
+```
+
+
+### Display modes
+
+#### 1. Full Mode (Bar + Percentage)
+
+```python
+from time import sleep
+
+pb = progressbar(display_mode="full")
+for i in range(100):
+    pb.update(1)
+    pb.show()
+    sleep(0.1)
+pb.stop()
+```
+**Output:**
+```
+[#########################                         ] 50.0%
+[##################################################] 100.0%
+```
+
+#### 2. Bar-Only Mode
+```python
+from time import sleep
+
+pb = progressbar(display_mode="bar")
+for i in range(100):
+    pb.update(1)
+    pb.show()
+    sleep(0.1)
+pb.stop()
+```
+**Output:**
+```
+[#########################                         ]
+[##################################################]
+```
+
+#### 3. Percent-Only Mode
+```python
+from time import sleep
+
+pb = progressbar(display_mode="percent")
+for i in range(100):
+    pb.update(1)
+    pb.show()
+    sleep(0.1)
+pb.stop()
+```
+**Output:**
+```
+50.0%
+100.0%
+```
+
+
+### Resetting the Progress Bar
+
+You can reset the progress bar to its initial state using the `reset()` method.
+
+```python
+tpb = progressbar(total=100, size=50)
+
+# Simulate a task
+for i in range(50):
+    tpb.update(1)
+    tpb.show()
+    sleep(0.1)
+
+tpb.reset()  # Reset the progress bar
+
+# Simulate another task
+for i in range(100):
+    tpb.update(1)
+    tpb.show()
+    sleep(0.1)
+
+tpb.stop()
+```
+
+---
+
+### Handling Errors
+
+PyBar includes basic error handling to ensure valid inputs. For example, if you provide a starting value greater than the total, or use multi-character strings for the filled or empty characters, a `ValueError` will be raised.
+
+```python
+try:
+    tpb = progressbar(filled="##", empty_char=" ", total=100)  # Invalid filled character
+except ValueError as e:
+    print(e)
+```
+
+**Output:**
+```plaintext
+Type mismatch in initial values
+```
+
+---
+
+## Additional Examples
+
+Some additional examples demonstrating various ways to use the `progressbar` class in different scenarios:
 
 ### Example 1: Custom Filled and Empty Characters
 You can use different characters for the filled and empty portions of the progress bar.
