@@ -228,24 +228,6 @@ tpb.stop()
 
 ---
 
-### Handling Errors
-
-PyBar includes basic error handling to ensure valid inputs. For example, if you provide a starting value greater than the total, or use multi-character strings for the filled or empty characters, a `ValueError` will be raised.
-
-```python
-try:
-    tpb = progressbar(filled="##", empty_char=" ", total=100)  # Invalid filled character
-except ValueError as e:
-    print(e)
-```
-
-**Output:**
-```plaintext
-Type mismatch in initial values
-```
-
----
-
 ## Additional Examples
 
 Some additional examples demonstrating various ways to use the `progressbar` class in different scenarios:
