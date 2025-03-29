@@ -1,0 +1,8 @@
+README.md
+setup.py
+PyBar/__init__.py
+PyBar/progressbar.py
+PyBar.egg-info/PKG-INFO
+PyBar.egg-info/SOURCES.txt
+PyBar.egg-info/dependency_links.txt
+PyBar.egg-info/top_level.txt

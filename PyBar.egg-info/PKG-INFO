@@ -1,3 +1,22 @@
+Metadata-Version: 2.2
+Name: PyBar
+Version: 0.0.1
+Summary: A simple progress bar
+Home-page: https://github.com/Hossein-Fazel/PyBar
+Author: Hossein Fazel
+Author-email: contact@gfg.com
+License: MIT
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
 # PyBar: A Simple Python Progress Bar
 
 **PyBar** is a lightweight and customizable progress bar implementation in Python. It is designed to be simple, flexible, and easy to integrate into your projects. Whether you're tracking the progress of a file download, data processing, or any other task, PyBar provides a clean and intuitive way to visualize progress.
@@ -37,25 +56,9 @@ The `progressbar` class can be initialized with the following parameters:
 
 ### Installation
 
-PyBar can be installed in several ways:
+PyBar is available as a GitHub repository, making it easy to integrate into your Python projects. Here's how to install and use it:
 
-#### Method 1: Install as a Python package (recommended)
-You can now install PyBar directly using pip:
-
-```bash
-pip install git+https://github.com/Hossein-Fazel/PyBar.git
-```
-
-Or alternatively, after cloning the repository:
-
-```bash
-git clone https://github.com/Hossein-Fazel/PyBar.git
-cd PyBar
-pip install .
-```
-
-
-#### Method 2: Cloning the Repository
+### Method 1: Cloning the Repository
 
 1. Clone the PyBar repository to your local machine:
    ```bash
@@ -67,22 +70,36 @@ pip install .
    cd PyBar
    ```
 
-3. copy the `PyBar` directory to your project
+3. Copy the `progressbar.py` file to your project directory.
 
 4. Import the progress bar in your Python script:
    ```python
-   from PyBar.progressbar import progressbar
+   from progressbar import progressbar
    ```
 
-#### Method 3: Direct Download
+### Method 2: Direct Download
 
 1. Visit the GitHub repository at [https://github.com/Hossein-Fazel/PyBar](https://github.com/Hossein-Fazel/PyBar)
 
 2. Click on the "Code" button and select "Download ZIP"
 
-3. Extract the ZIP file and copy the `PyBar` directory to your project
+3. Extract the ZIP file and copy `progressbar.py` to your project directory
 
 4. Import it in your Python script:
+   ```python
+   from progressbar import progressbar
+   ```
+
+### Method 3: Using as a Submodule (for Git projects)
+
+If you're managing your project with Git:
+
+1. Add PyBar as a submodule:
+   ```bash
+   git submodule add https://github.com/Hossein-Fazel/PyBar.git
+   ```
+
+2. Import it in your Python script:
    ```python
    from PyBar.progressbar import progressbar
    ```
