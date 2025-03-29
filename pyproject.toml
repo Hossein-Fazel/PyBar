@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyBar"
+version = "1.0.0"
+authors = [
+    {name = "Hossein-Fazel", email = "fazel.hosein9654@gmail.com"},
+]
+description = "A simple progress bar with python"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Hossein-Fazel/PyBar"
+
+[tool.setuptools]
+packages = ["PyBar"]
