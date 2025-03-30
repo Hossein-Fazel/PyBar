@@ -71,7 +71,7 @@ pip install .
 
 4. Import the progress bar in your Python script:
    ```python
-   from PyBar.progressbar import progressbar
+   from PyBar.progressbar import ProgressBar
    ```
 
 #### Method 3: Direct Download
@@ -84,7 +84,7 @@ pip install .
 
 4. Import it in your Python script:
    ```python
-   from PyBar.progressbar import progressbar
+   from PyBar.progressbar import ProgressBar
    ```
 
 ### Requirements
@@ -107,7 +107,7 @@ Here’s a simple example to get you started:
 from time import sleep
 
 # Create a progress bar with default settings
-tpb = progressbar()
+tpb = ProgressBar()
 
 # Simulate a task that takes 100 steps
 for i in range(100):
@@ -131,7 +131,7 @@ You can customize the progress bar by specifying the filled character, empty cha
 
 ```python
 # Create a custom progress bar
-tpb = progressbar(filled="=", empty_char=".", total=100, size=50)
+tpb = ProgressBar(filled="=", empty_char=".", total=100, size=50)
 
 # Simulate a task that takes 100 steps
 for i in range(100):
@@ -156,7 +156,7 @@ tpb.stop()
 ```python
 from time import sleep
 
-pb = progressbar(display_mode="full")
+pb = ProgressBar(display_mode="full")
 for i in range(100):
     pb.update(1)
     pb.show()
@@ -173,7 +173,7 @@ pb.stop()
 ```python
 from time import sleep
 
-pb = progressbar(display_mode="bar")
+pb = ProgressBar(display_mode="bar")
 for i in range(100):
     pb.update(1)
     pb.show()
@@ -190,7 +190,7 @@ pb.stop()
 ```python
 from time import sleep
 
-pb = progressbar(display_mode="percent")
+pb = ProgressBar(display_mode="percent")
 for i in range(100):
     pb.update(1)
     pb.show()
@@ -209,7 +209,7 @@ pb.stop()
 You can reset the progress bar to its initial state using the `reset()` method.
 
 ```python
-tpb = progressbar(total=100, size=50)
+tpb = ProgressBar(total=100, size=50)
 
 # Simulate a task
 for i in range(50):
@@ -241,7 +241,7 @@ You can use different characters for the filled and empty portions of the progre
 from time import sleep
 
 # Create a progress bar with "=" as the filled character and "." as the empty character
-tpb = progressbar(filled="=", empty_char=".", total=100, size=50)
+tpb = ProgressBar(filled="=", empty_char=".", total=100, size=50)
 
 # Simulate a task that takes 100 steps
 for i in range(100):
@@ -267,7 +267,7 @@ You can create a smaller progress bar for compact displays.
 from time import sleep
 
 # Create a smaller progress bar with a size of 20
-tpb = progressbar(filled="#", empty_char=" ", total=100, size=20)
+tpb = ProgressBar(filled="#", empty_char=" ", total=100, size=20)
 
 # Simulate a task that takes 100 steps
 for i in range(100):
@@ -293,7 +293,7 @@ You can initialize the progress bar with a starting value other than `0`.
 from time import sleep
 
 # Create a progress bar starting at 30 out of 100
-tpb = progressbar(filled="#", empty_char=" ", total=100, size=50, start=30)
+tpb = ProgressBar(filled="#", empty_char=" ", total=100, size=50, start=30)
 
 # Simulate a task that takes 70 steps (to reach 100)
 for i in range(70):
@@ -319,7 +319,7 @@ You can use the progress bar for tasks with a smaller total number of steps.
 from time import sleep
 
 # Create a progress bar for a task with only 10 steps
-tpb = progressbar(filled="#", empty_char=" ", total=10, size=20)
+tpb = ProgressBar(filled="#", empty_char=" ", total=10, size=20)
 
 # Simulate a task that takes 10 steps
 for i in range(10):
@@ -345,7 +345,7 @@ You can use Unicode characters for a more visually appealing progress bar.
 from time import sleep
 
 # Create a progress bar with a block character (█) as the filled character
-tpb = progressbar(filled="█", empty_char="░", total=100, size=40)
+tpb = ProgressBar(filled="█", empty_char="░", total=100, size=40)
 
 # Simulate a task that takes 100 steps
 for i in range(100):
@@ -375,7 +375,7 @@ file_size_mb = 10
 chunk_size_mb = 1
 
 # Create a progress bar with a total of 10 steps (1 step per MB)
-tpb = progressbar(filled="#", empty_char=" ", total=file_size_mb, size=30)
+tpb = ProgressBar(filled="#", empty_char=" ", total=file_size_mb, size=30)
 
 print("Downloading file...")
 for i in range(file_size_mb):
@@ -410,7 +410,7 @@ chunk_size_mb = 1
 
 for file_num in range(1, num_files + 1):
     print(f"Downloading file {file_num}...")
-    tpb = progressbar(filled="#", empty_char=" ", total=file_size_mb, size=30)
+    tpb = ProgressBar(filled="#", empty_char=" ", total=file_size_mb, size=30)
 
     for i in range(file_size_mb):
         tpb.update(chunk_size_mb)

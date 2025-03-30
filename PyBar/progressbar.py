@@ -1,4 +1,4 @@
-class progressbar:
+class ProgressBar:
     def __init__(self, filled:str = "#", empty_char:str = " ", total:int = 100, size:int = 50, start:int = 0, display_mode:str= "full"):
         """
         Initialize a customizable progress bar instance.
@@ -53,17 +53,17 @@ class progressbar:
         
     def reset(self):
         self._isStop = False
-        percent = round(self._start/self._total * 100, 1)
+        percent = self._start/self._total * 100
         progress = int(percent // self._scale)
-        self._progress_bar = f"\r{f"[{self._filled * progress}{self._emptyChar * (self._size - progress)}]" * (self._pb)}{f" {percent}%" * self._pc}"
+        self._progress_bar = f"\r{f"[{self._filled * progress}{self._emptyChar * (self._size - progress)}]" * (self._pb)}{f" {percent:.1f}%" * self._pc}"
 
     def update(self, value:int):
         if not self._isStop:
             try:
                 self._spent += int(value)
-                percent = round(self._spent/self._total * 100, 1)
+                percent = self._spent/self._total * 100
                 progress = int(percent // self._scale)
-                self._progress_bar = f"\r{f"[{self._filled * progress}{self._emptyChar * (self._size - progress)}]" * (self._pb)}{f"{percent}%" * self._pc}"
+                self._progress_bar = f"\r{f"[{self._filled * progress}{self._emptyChar * (self._size - progress)}]" * (self._pb)}{f" {percent:.1f}%" * self._pc}"
             except:
                 raise ValueError(f"Type mismatch for Value parameter, int expected but {type(value)} given")
         else:
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     from time import sleep
 
     # Create a progress bar with "=" as the filled character and "." as the empty character
-    tpb = progressbar(filled="=", empty_char=".", total=100, size=50)
+    tpb = ProgressBar(filled="=", empty_char=".", total=100, size=50)
 
     # Simulate a task that takes 100 steps
     for i in range(100):
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
 
     # Create a smaller progress bar with a size of 20
-    tpb = progressbar(filled="#", empty_char=" ", total=100, size=20)
+    tpb = ProgressBar(filled="#", empty_char=" ", total=100, size=20)
 
     # Simulate a task that takes 100 steps
     for i in range(100):
@@ -106,7 +106,7 @@ if __name__ == "__main__":
 
 
 
-    tpb = progressbar(filled="#", empty_char=" ", total=100, size=50, start=30)
+    tpb = ProgressBar(filled="#", empty_char=" ", total=100, size=50, start=30)
 
     # Simulate a task that takes 70 steps (to reach 100)
     for i in range(70):
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
 
     # Create a progress bar for a task with only 10 steps
-    tpb = progressbar(filled="#", empty_char=" ", total=10, size=20)
+    tpb = ProgressBar(filled="#", empty_char=" ", total=10, size=20)
 
     # Simulate a task that takes 10 steps
     for i in range(10):
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 
 
     # Create a progress bar with a block character (█) as the filled character
-    tpb = progressbar(filled="█", empty_char="░", total=100, size=40)
+    tpb = ProgressBar(filled="█", empty_char="░", total=100, size=40)
 
     # Simulate a task that takes 100 steps
     for i in range(100):
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     chunk_size_mb = 1
 
     # Create a progress bar with a total of 10 steps (1 step per MB)
-    tpb = progressbar(filled="#", empty_char=" ", total=file_size_mb, size=30)
+    tpb = ProgressBar(filled="#", empty_char=" ", total=file_size_mb, size=30)
 
     print("Downloading file...")
     for i in range(file_size_mb):
@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
     for file_num in range(1, num_files + 1):
         print(f"Downloading file {file_num}...")
-        tpb = progressbar(filled="#", empty_char=" ", total=file_size_mb, size=30)
+        tpb = ProgressBar(filled="#", empty_char=" ", total=file_size_mb, size=30)
 
         for i in range(file_size_mb):
             tpb.update(chunk_size_mb)
